@@ -1,0 +1,36 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build output
+bin/
+obj/
+**/bin/
+**/obj/
+
+# WinUI/MSIX package output
+AppPackages/
+**/AppPackages/
+BundleArtifacts/
+**/BundleArtifacts/
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+*.msixupload
+*.appxsym
+*.cer
+*.pfx
+
+# Logs and temporary files
+*.log
+*.tmp
+*.cache
+TestResults/
+
+# Local generated inspection folders
+tmp_msix_inspect/
+

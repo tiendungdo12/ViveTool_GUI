@@ -1,0 +1,34 @@
+<Page
+    x:Class="ViveToolGUI.Views.AdvancedCommandsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Padding="40" Spacing="18">
+            <TextBlock Text="Advanced Commands" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Run less common ViVeTool commands. Use typed pages when possible; raw commands are for debugging and parity with ViVeTool." Opacity="0.75" />
+            <InfoBar x:Name="ResultBar" IsOpen="False" />
+
+            <Border Padding="20" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Raw command" FontSize="18" FontWeight="SemiBold" />
+                    <TextBox x:Name="RawArgsBox" PlaceholderText="/query /store:runtime" />
+                    <CheckBox x:Name="RequiresAdminBox" Content="Require administrator before running" />
+                    <Button Content="Run command" Click="RunRaw_Click" />
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="LKG Status" Click="LkgStatus_Click" />
+                <Button Grid.Column="1" Content="Change Stamp" Click="ChangeStamp_Click" />
+                <Button Grid.Column="2" Content="Query Subscriptions" Click="QuerySubs_Click" />
+            </Grid>
+
+            <TextBox x:Name="OutputBox" Header="Output" AcceptsReturn="True" TextWrapping="Wrap" IsReadOnly="True" MinHeight="360" />
+        </StackPanel>
+    </ScrollViewer>
+</Page>

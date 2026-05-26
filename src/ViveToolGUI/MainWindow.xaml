@@ -1,0 +1,52 @@
+<Window
+    x:Class="ViveToolGUI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="ViVeTool GUI">
+    <Grid>
+        <NavigationView x:Name="NavView"
+                        IsBackButtonVisible="Collapsed"
+                        PaneDisplayMode="Left"
+                        SelectionChanged="NavView_SelectionChanged">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="Enable/Disable" Tag="EnableDisable" Icon="Accept" />
+                <NavigationViewItem Content="Query" Tag="Query" Icon="Find" />
+                <NavigationViewItem Content="Advanced Commands" Tag="Advanced" Icon="Library" />
+                <NavigationViewItem Content="Backup/Restore" Tag="Backup" Icon="Save" />
+                <NavigationViewItem Content="Reset/Repair" Tag="Reset" Icon="Refresh" />
+                <NavigationViewItem Content="Subfeatures" Tag="Subfeatures" Icon="AddFriend" />
+            </NavigationView.MenuItems>
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem Content="Settings" Tag="Settings" Icon="Setting" />
+            </NavigationView.FooterMenuItems>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <InfoBar x:Name="AdminInfo"
+                         Margin="24,16,24,0"
+                         Severity="Warning"
+                         Title="Administrator required for write commands"
+                         Message="Read-only actions can run normally. Commands that change Windows feature state will request elevation."
+                         IsOpen="False">
+                    <InfoBar.ActionButton>
+                        <Button Content="Restart as administrator" Click="RestartAdmin_Click" />
+                    </InfoBar.ActionButton>
+                </InfoBar>
+
+                <Frame x:Name="ContentFrame" Grid.Row="1" />
+
+                <InfoBar x:Name="MessageBar"
+                         Grid.Row="2"
+                         Margin="24,0,24,16"
+                         IsOpen="False" />
+            </Grid>
+        </NavigationView>
+    </Grid>
+</Window>

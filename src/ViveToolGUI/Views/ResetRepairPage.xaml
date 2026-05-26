@@ -1,0 +1,45 @@
+<Page
+    x:Class="ViveToolGUI.Views.ResetRepairPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Padding="40" Spacing="18">
+            <TextBlock Text="Reset and Repair" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Repair and reset commands change feature configuration and may require a reboot." Opacity="0.75" />
+            <InfoBar x:Name="ResultBar" IsOpen="False" />
+
+            <Border Padding="20" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8">
+                <StackPanel Spacing="12">
+                    <TextBlock Text="Reset selected features" FontSize="18" FontWeight="SemiBold" />
+                    <TextBox x:Name="IdsBox" PlaceholderText="Feature IDs" />
+                    <TextBox x:Name="NamesBox" PlaceholderText="Feature names" />
+                    <ComboBox x:Name="ResetStoreBox" SelectedIndex="0">
+                        <ComboBoxItem Content="both" />
+                        <ComboBoxItem Content="runtime" />
+                        <ComboBoxItem Content="boot" />
+                    </ComboBox>
+                    <Button Content="Reset selected" Click="Reset_Click" />
+                </StackPanel>
+            </Border>
+
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="LKG Status" Click="LkgStatus_Click" />
+                <Button Grid.Column="1" Content="Change Stamp" Click="ChangeStamp_Click" />
+                <Button Grid.Column="2" Content="Fix Priority" Click="FixPriority_Click" />
+            </Grid>
+            <Grid ColumnSpacing="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Content="Fix LKG" Click="FixLkg_Click" />
+                <Button Grid.Column="1" Content="Full Reset" Background="{ThemeResource SystemFillColorCriticalBrush}" Click="FullReset_Click" />
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

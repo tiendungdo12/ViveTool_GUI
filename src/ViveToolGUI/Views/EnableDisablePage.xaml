@@ -1,0 +1,90 @@
+<Page
+    x:Class="ViveToolGUI.Views.EnableDisablePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Padding="40" Spacing="18">
+            <TextBlock Text="Enable or Disable Feature" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Build a ViVeTool enable/disable command. Write commands request administrator approval when needed." Opacity="0.75" />
+
+            <InfoBar x:Name="ResultBar" IsOpen="False" />
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Feature IDs" FontWeight="SemiBold" />
+                    <TextBox x:Name="IdsBox" PlaceholderText="12345678,87654321" TextChanged="InputChanged" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Feature names" FontWeight="SemiBold" />
+                    <TextBox x:Name="NamesBox" PlaceholderText="TIFE,STTest" TextChanged="InputChanged" />
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Variant" />
+                    <NumberBox x:Name="VariantBox" Minimum="0" Maximum="63" Value="0" SpinButtonPlacementMode="Compact" ValueChanged="InputChanged" />
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Payload kind" />
+                    <ComboBox x:Name="PayloadKindBox" SelectedIndex="0" SelectionChanged="InputChanged">
+                        <ComboBoxItem Content="none" />
+                        <ComboBoxItem Content="resident" />
+                        <ComboBoxItem Content="external" />
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Spacing="8">
+                    <TextBlock Text="Payload" />
+                    <NumberBox x:Name="PayloadBox" Minimum="0" Maximum="4294967295" Value="0" SpinButtonPlacementMode="Compact" ValueChanged="InputChanged" />
+                </StackPanel>
+            </Grid>
+
+            <Grid ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackPanel Spacing="8">
+                    <TextBlock Text="Priority" />
+                    <ComboBox x:Name="PriorityBox" SelectedIndex="4" SelectionChanged="InputChanged">
+                        <ComboBoxItem Content="safeguard" />
+                        <ComboBoxItem Content="service" />
+                        <ComboBoxItem Content="dynamic" />
+                        <ComboBoxItem Content="user" />
+                        <ComboBoxItem Content="userpolicy" />
+                        <ComboBoxItem Content="test" />
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="8">
+                    <TextBlock Text="Store" />
+                    <ComboBox x:Name="StoreBox" SelectedIndex="0" SelectionChanged="InputChanged">
+                        <ComboBoxItem Content="both" />
+                        <ComboBoxItem Content="runtime" />
+                        <ComboBoxItem Content="boot" />
+                    </ComboBox>
+                </StackPanel>
+                <CheckBox x:Name="ExperimentBox" Grid.Column="2" Content="Experiment override" VerticalAlignment="Bottom" Checked="InputChanged" Unchecked="InputChanged" />
+            </Grid>
+
+            <StackPanel Spacing="8">
+                <TextBlock Text="Command preview" FontWeight="SemiBold" />
+                <TextBox x:Name="PreviewBox" IsReadOnly="True" />
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button x:Name="EnableButton" Content="Enable" Click="Enable_Click" />
+                <Button x:Name="DisableButton" Content="Disable" Click="Disable_Click" />
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

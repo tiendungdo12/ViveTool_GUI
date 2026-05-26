@@ -1,0 +1,81 @@
+<Page
+    x:Class="ViveToolGUI.Views.QueryPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="using:ViveToolGUI.Models">
+    <Grid Padding="40" RowSpacing="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Spacing="8">
+            <TextBlock Text="Query Features" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="View configured Windows features and filter the results by ID, state, priority, type, or name." Opacity="0.75" />
+        </StackPanel>
+
+        <InfoBar x:Name="ResultBar" Grid.Row="1" IsOpen="False" />
+
+        <StackPanel Grid.Row="2" Spacing="12">
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Content="Query All" Click="QueryAll_Click" />
+                <Button Content="Export TXT" Click="ExportTxt_Click" />
+                <Button Content="Export CSV" Click="ExportCsv_Click" />
+                <Button Content="Export JSON" Click="ExportJson_Click" />
+            </StackPanel>
+            <Grid ColumnSpacing="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="1.5*" />
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="IdFilterBox" PlaceholderText="ID filter" TextChanged="FilterChanged" />
+                <TextBox x:Name="StateFilterBox" Grid.Column="1" PlaceholderText="State" TextChanged="FilterChanged" />
+                <TextBox x:Name="PriorityFilterBox" Grid.Column="2" PlaceholderText="Priority" TextChanged="FilterChanged" />
+                <TextBox x:Name="TypeFilterBox" Grid.Column="3" PlaceholderText="Type" TextChanged="FilterChanged" />
+                <TextBox x:Name="NameFilterBox" Grid.Column="4" PlaceholderText="Name" TextChanged="FilterChanged" />
+            </Grid>
+        </StackPanel>
+
+        <ListView x:Name="FeaturesList" Grid.Row="3" ItemsSource="{x:Bind VisibleFeatures}">
+            <ListView.Header>
+                <Grid Padding="12,8" ColumnSpacing="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="130" />
+                        <ColumnDefinition Width="160" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="ID" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="1" Text="Priority" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="2" Text="State" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="3" Text="Type" FontWeight="SemiBold" />
+                    <TextBlock Grid.Column="4" Text="Name" FontWeight="SemiBold" />
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="models:FeatureConfigItem">
+                    <Grid Padding="12,6" ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="130" />
+                            <ColumnDefinition Width="160" />
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition Width="140" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Bind Id}" />
+                        <TextBlock Grid.Column="1" Text="{x:Bind Priority}" />
+                        <TextBlock Grid.Column="2" Text="{x:Bind State}" />
+                        <TextBlock Grid.Column="3" Text="{x:Bind Type}" />
+                        <TextBlock Grid.Column="4" Text="{x:Bind Name}" TextTrimming="CharacterEllipsis" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

@@ -1,0 +1,43 @@
+<Page
+    x:Class="ViveToolGUI.Views.BackupRestorePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Padding="40" Spacing="18">
+            <TextBlock Text="Backup and Restore" Style="{StaticResource TitleTextBlockStyle}" />
+            <TextBlock Text="Export can run without administrator rights. Import writes feature configuration and will request administrator approval." Opacity="0.75" />
+            <InfoBar x:Name="ResultBar" IsOpen="False" />
+
+            <Grid ColumnSpacing="24">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Border Padding="20" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Export configurations" FontSize="18" FontWeight="SemiBold" />
+                        <ComboBox x:Name="ExportStoreBox" SelectedIndex="0">
+                            <ComboBoxItem Content="both" />
+                            <ComboBoxItem Content="runtime" />
+                            <ComboBoxItem Content="boot" />
+                        </ComboBox>
+                        <Button Content="Export to Documents" Click="Export_Click" />
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Padding="20" BorderThickness="1" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" CornerRadius="8">
+                    <StackPanel Spacing="12">
+                        <TextBlock Text="Import configurations" FontSize="18" FontWeight="SemiBold" />
+                        <TextBox x:Name="ImportPathBox" PlaceholderText="Path to exported .bin file" />
+                        <ComboBox x:Name="ImportStoreBox" SelectedIndex="0">
+                            <ComboBoxItem Content="both" />
+                            <ComboBoxItem Content="runtime" />
+                            <ComboBoxItem Content="boot" />
+                        </ComboBox>
+                        <CheckBox x:Name="ReplaceBox" Content="Full reset before import (/replace)" />
+                        <Button Content="Import" Click="Import_Click" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
